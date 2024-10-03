@@ -13,7 +13,7 @@ COPY src ./src
 
 # Build do Maven SEM testes unitarios
 # RUN mvn clean install -DSkipTests=true
-RUN mvn clean package -DSkipTests
+RUN mvn clean package -DskipTests
 
 #
 # Package stage
@@ -25,4 +25,5 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","vemnox1.jar"]
+
+ENTRYPOINT ["java","-jar","/app/app.jar"]
